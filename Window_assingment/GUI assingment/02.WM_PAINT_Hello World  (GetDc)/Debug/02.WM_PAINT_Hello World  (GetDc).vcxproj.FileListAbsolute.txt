@@ -1,0 +1,2 @@
+C:\Myprojects\My Window\GUI assingment\02.WM_PAINT_Hello World  (GetDc)\Debug\02.WM_PAINT_Hello World  (GetDc).exe
+C:\Myprojects\My Window\GUI assingment\02.WM_PAINT_Hello World  (GetDc)\Debug\02.WM_PAINT_Hello World  (GetDc).pdb
