@@ -1,0 +1,4 @@
+#include "window.h"
+
+MY_ICON ICON OptimistCoder.ico
+
