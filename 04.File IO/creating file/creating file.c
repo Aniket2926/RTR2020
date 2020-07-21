@@ -4,14 +4,14 @@ int main(void)
 {
 	//code
 	//Local variable declaration 
-	FILE *pFile=NULL // file is type date
-		
+	FILE* pfile = NULL; // file is type date
+
 	//library
-		if (fopen_s(&pfile, "AMKlog.exe", "w") != ) //w=write
-		{
-			printf("can not open desired file\n");
-			exit(0);
-		}
+	if (fopen_s(&pfile, "amklog.txt", "w") != 0)
+	{
+		printf("can not open desired file\n");
+		exit(0);
+	}
 	//3rd step
 
 	fprintf(pfile, "India is my country.\n");
@@ -23,7 +23,8 @@ int main(void)
 	//step5
 	pfile = NULL;
 
+	getch();
+
 	return(0);
 
 }
-

@@ -102,12 +102,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			   }
 			   break;  // wm keydown break
 			}
-		   switch (iMsg)
-		   {
-		   case WM_DESTROY:
+		    case WM_DESTROY:
 			   PostQuitMessage(0);
 			   break;
-		   }
+		 
 		}
 
 	return(DefWindowProc(hwnd, iMsg, wParam, lParam));
@@ -125,7 +123,7 @@ void ToggleFullScreen(void)
 	if (gbFullScreen == false)
 	{
 		dwStyle = GetWindowLong(ghwnd,GWL_STYLE); //getwindowlong:get style,get from OS
-		if (dwStyle & WS_OVERLAPPEDWINDOW);
+		if(dwStyle & WS_OVERLAPPEDWINDOW)
 		{
 			if (GetWindowPlacement(ghwnd, &wpPrev) && GetMonitorInfo(MonitorFromWindow(ghwnd, MONITORINFOF_PRIMARY), &mi))// calling internally
 			{

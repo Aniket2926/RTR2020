@@ -17,7 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	MSG msg;
 	TCHAR szAppName[] = TEXT("My Window2926");
 
-	if (fopen_s(&gpfile, "amklog.exe", "w") != 0)
+	if (fopen_s(&gpfile, "amklog.txt", "w") != 0)
 	{
 		MessageBox(NULL, TEXT("can not create desired file"), TEXT("error"), MB_OK);
 		exit(0);
@@ -98,3 +98,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	return(DefWindowProc(hwnd, iMsg, wParam, lParam));
 
 }
+
+
+
