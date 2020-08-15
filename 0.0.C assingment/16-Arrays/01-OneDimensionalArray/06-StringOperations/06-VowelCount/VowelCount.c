@@ -55,6 +55,7 @@ int main(void)
             break;  
         case 'U':  
         case 'u':
+            count_U++;
             break; 
         default:   
             break;
