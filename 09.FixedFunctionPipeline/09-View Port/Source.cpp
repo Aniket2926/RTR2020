@@ -186,7 +186,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case 0x46:    //x for hexa
-		case 0x66:   //f=66,F=46
+		//case 0x66:   //f=66,F=46
 			ToggleFullScreen(); // calling Func.
 			break;
 			
@@ -226,7 +226,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case 54:             // case from 48 to 59 are for view port 
-		//case VK_NUMPAD6:
+		case VK_NUMPAD6:
 			glViewport(gwidth/2, 0, (GLsizei)gwidth/2, (GLsizei)gheight);
 			break;
 
