@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graph Paper with circle (gl_Lines)", "Graph Paper with circle (gl_Lines)\Graph Paper with circle (gl_Lines).vcxproj", "{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Debug|x64.ActiveCfg = Debug|x64
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Debug|x64.Build.0 = Debug|x64
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Debug|x86.ActiveCfg = Debug|Win32
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Debug|x86.Build.0 = Debug|Win32
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Release|x64.ActiveCfg = Release|x64
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Release|x64.Build.0 = Release|x64
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Release|x86.ActiveCfg = Release|Win32
+		{4A7E12A3-44AB-4CD7-AA31-C6272E687CA1}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59A3C3F7-E0EA-4570-86ED-D1282CACF9A1}
+	EndGlobalSection
+EndGlobal
