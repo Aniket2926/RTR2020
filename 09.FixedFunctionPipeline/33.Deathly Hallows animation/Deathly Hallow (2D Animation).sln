@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Deathly Hallow (2D Animation)", "Deathly Hallow (2D Animation)\Deathly Hallow (2D Animation).vcxproj", "{9FF34E40-76B0-4F09-9A82-365C05722B45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Debug|x64.ActiveCfg = Debug|x64
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Debug|x64.Build.0 = Debug|x64
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Debug|x86.ActiveCfg = Debug|Win32
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Debug|x86.Build.0 = Debug|Win32
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Release|x64.ActiveCfg = Release|x64
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Release|x64.Build.0 = Release|x64
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Release|x86.ActiveCfg = Release|Win32
+		{9FF34E40-76B0-4F09-9A82-365C05722B45}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7913137-F0F2-4F90-8D25-7DB99F38DB70}
+	EndGlobalSection
+EndGlobal
