@@ -1,0 +1,13 @@
+#include "window.h"
+
+MY_ICON ICON OptimistCoder.ico
+
+MY_SONG WAVE india.wav
+
+MY_SONG2 WAVE watan.wav
+
+MY_SONG3 WAVE india2.wav // class
+
+
+MY_SONG5 WAVE final.wav
+
