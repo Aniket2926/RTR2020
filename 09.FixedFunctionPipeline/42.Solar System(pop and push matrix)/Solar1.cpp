@@ -386,7 +386,7 @@ void display(void)
 
 	// ** Beautification lines 
 	
-
+	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //.....1para front and back pahijhe..kasa pahijhe solid or line so we choose lines
 	glColor3f(1.0f, 1.0f, 0.0f); 
 	

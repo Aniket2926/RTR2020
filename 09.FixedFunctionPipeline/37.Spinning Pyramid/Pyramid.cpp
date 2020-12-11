@@ -363,68 +363,48 @@ void display(void)
 	glRotatef(angle, 0.0f, 1.0f, 0.0f);  // spining
 
 	glBegin(GL_TRIANGLES);
-	//Front
-	glColor3f(1.0f, 0.0f, 0.0f);
-
-	glVertex3f(0.0f, 1.0f, 0.0f); //rgb
-
-	glColor3f(0.0f, 1.0f, 0.0f);
-
-	glVertex3f(-1.0f, -1.0f, 1.0f);//
-
-	glColor3f(0.0f, 0.0f, 1.0f);
-
-	glVertex3f(1.0f, -1.0f, 1.0f);//
-
-	//Right
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 1.0f, 0.0f); //
-
-	
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(1.0f, -1.0f, 1.0f);//
-
-	
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(1.0f, -1.0f, -1.0f);//
-
-	//Back
-
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 1.0f, 0.0f); //
-
-	
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(1.0f, -1.0f, -1.0f);//
-
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-1.0f, -1.0f, -1.0f);//
 
 
+	//FRONT FACE
+	glColor3f(1.0f, 0.0f, 0.0f); //red
+	glVertex3f(0.0f, 1.0f, 0.0f); 
 
+	glColor3f(0.0f, 1.0f, 0.0f); //green
+	glVertex3f(-1.0f, -1.0f, 1.0f); //left-corner of front face
 
+	glColor3f(0.0f, 0.0f, 1.0f); //blue
+	glVertex3f(1.0f, -1.0f, 1.0f); //right-corner of front face
 
-	//Left
+	//RIGHT FACE
+	glColor3f(1.0f, 0.0f, 0.0f); //red
+	glVertex3f(0.0f, 1.0f, 0.0f); 
 
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex3f(0.0f, 1.0f, 0.0f); //
+	glColor3f(0.0f, 0.0f, 1.0f); //blue
+	glVertex3f(1.0f, -1.0f, 1.0f); //left-corner of right face
 
-	
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glVertex3f(-1.0f, -1.0f, -1.0f);//
+	glColor3f(0.0f, 1.0f, 0.0f); //green
+	glVertex3f(1.0f, -1.0f, -1.0f); //right-corner of right face
 
-	
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-1.0f, -1.0f, 1.0f);//
+	//BACK FACE
+	glColor3f(1.0f, 0.0f, 0.0f); //red
+	glVertex3f(0.0f, 1.0f, 0.0f); 
 
+	glColor3f(0.0f, 1.0f, 0.0f); //green
+	glVertex3f(1.0f, -1.0f, -1.0f); //left-corner of back face
 
+	glColor3f(0.0f, 0.0f, 1.0f); //blue
+	glVertex3f(-1.0f, -1.0f, -1.0f); //right-corner of back face
 
+	//LEFT FACE
+	glColor3f(1.0f, 0.0f, 0.0f); //red
+	glVertex3f(0.0f, 1.0f, 0.0f); 
 
+	glColor3f(0.0f, 0.0f, 1.0f); //blue
+	glVertex3f(-1.0f, -1.0f, -1.0f); //left-corner of left face
 
-
-
-
+	glColor3f(0.0f, 1.0f, 0.0f); //green
+	glVertex3f(-1.0f, -1.0f, 1.0f); //right-corner of left face
+	glEnd();
 
 
 	glEnd();
