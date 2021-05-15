@@ -63,18 +63,18 @@ GLuint vbo_color;
 
 // Change 1 for shapes 
 
-GLuint vbo_Triangle_Position;
-GLuint vbo_Triangle_Color;
-GLuint vao_Triangle;
+GLuint vbo_Pyramid_Position;
+GLuint vbo_Pyramid_Color;
+GLuint vao_Pyramid;
 
-GLuint vao_Square;
-GLuint vbo_Square_Color;
-GLuint vbo_Square_Position;
+GLuint vao_Cube;
+GLuint vbo_Cube_Color;
+GLuint vbo_Cube_Position;
 
 // Animation rotation  ........change 1
 
-GLfloat angletriangle = 0.0f;
-GLfloat anglesquare = 0.0f;
+GLfloat AnglePyramid = 0.0f;
+GLfloat AngleCube = 0.0f;
 
 
 
@@ -136,7 +136,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 	hwnd = CreateWindowEx(WS_EX_APPWINDOW,
 		szClassName,
-		TEXT("OpenGL Programmable Pipeline : MultiColor Triangle"),
+		TEXT("OpenGL Programmable Pipeline : 3D Animation"),
 		WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE,
 		100,
 		100,
@@ -641,64 +641,116 @@ void initialize(void)
 	// get MVP uniform location
 	mvpUniform = glGetUniformLocation(gShaderProgramObject, "u_mvpmatrix");
 
-	// ** vertices, colors, shader, attribs , vbo , vao initialization ***
+	//*** Vertex, color, shader attribs, vbo, vao initialization ***
 
-	const GLfloat triangleVertices[] =
+	const GLfloat PyramidVertices[] =
+	{ 0.0f, 1.0f, 0.0f, // apex
+	 -1.0f, -1.0f,1.0f, // left-bottom
+	  1.0f ,-1.0f, 1.0f, // right-bottom 1
+	  0.0f, 1.0f, 0.0f,
+	  1.0f, -1.0f, 1.0f,
+	  1.0f, -1.0f,-1.0f,//2
+	  0.0f, 1.0f, 0.0f,
+	  1.0f, -1.0f,-1.0f,
+	  -1.0f, -1.0f,-1.0f,//3
+	  0.0f, 1.0f, 0.0f,
+	  -1.0f, -1.0f,-1.0f,
+	  -1.0f, -1.0f,1.0f //4
+	};
+
+	const GLfloat PyramidColors[] =
 	{
-		0.0f,1.0f,0.0f, //apex       // 2nd cahnge 
-		-1.0f,-1.0f,0.0f, //left bottom
-		1.0f,-1.0f,0.0f // right bottom
-
+		1.0f, 0.0f, 0.0f, //Red
+		0.0f, 1.0f, 0.0f, //Green
+		0.0f, 0.0f, 1.0f, //Blue 1
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f,//2
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,//3
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f//4
 	};
 
-	// change no.5
+	const GLfloat CubeVertices[] =
+	{
+		1.0f, 1.0f, 1.0f,
+	   -1.0f, 1.0f, 1.0f,
+	   -1.0f, -1.0f, 1.0f,
+		1.0f, -1.0f, 1.0f,//1
+		1.0f, 1.0f, -1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f, -1.0f, 1.0f,
+		1.0f, -1.0f, -1.0f,//2
+		-1.0f, 1.0f, -1.0f,
+		1.0f, 1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,//3
+		-1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f, 1.0f,//4
+		1.0f, 1.0f, -1.0f,
+		-1.0f, 1.0f, -1.0f,
+		-1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,//5
+		1.0f, -1.0f, -1.0f,
+	   -1.0f, -1.0f, -1.0f,
+	   -1.0f, -1.0f, 1.0f,
+	   1.0f, -1.0f, 1.0f//6
+	};
 
-	const GLfloat triangleColors[] =
-	{							// Perspective triangle colors
-		1.0f, 0.0f, 0.0f,		// Red apex
-		0.0f, 1.0f, 0.0f,		// Green left bottom
-		0.0f, 0.0f, 1.0f,		// Blue right bottom
+	const GLfloat CubeColors[] =
+	{
+		1.0f, 0.0f, 0.0f,//Red 
+		1.0f, 0.0f, 0.0f,//Red
+		1.0f, 0.0f, 0.0f,//Red
+		1.0f, 0.0f, 0.0f,//Red //1
+		0.0f, 1.0f, 0.0f, //Green
+		0.0f, 1.0f, 0.0f, //Green
+		0.0f, 1.0f, 0.0f, //Green
+		0.0f, 1.0f, 0.0f, //Green//2
+		0.0f, 0.0f, 1.0f, //Blue 
+		0.0f, 0.0f, 1.0f, //Blue
+		0.0f, 0.0f, 1.0f, //Blue
+		0.0f, 0.0f, 1.0f, //Blue//3
+		0.0f, 1.0f, 1.0f, //4
+		0.0f, 1.0f, 1.0f, //4
+		0.0f, 1.0f, 1.0f, //4
+		0.0f, 1.0f, 1.0f, //4
+		1.0f, 0.0f, 1.0f, //5
+		1.0f, 0.0f, 1.0f, //5
+		1.0f, 0.0f, 1.0f, //5
+		1.0f, 0.0f, 1.0f, //5
+		1.0f, 1.0f, 0.0f, //6
+		1.0f, 1.0f, 0.0f, //6
+		1.0f, 1.0f, 0.0f, //6
+		1.0f, 1.0f, 0.0f  //6
 	};
 
 
-	// change 2
-
-
-	const GLfloat squareVertices[] =
-	{							// Perspective square
-		1.0f, 1.0f, 0.0f,
-		-1.0f, 1.0f, 0.0f,
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-	};
-
-	const GLfloat squareColors[] =
-	{							//  color
-		0.258824f, 0.258824f, 0.435294f,
-		0.258824f, 0.258824f, 0.435294f,
-		0.258824f, 0.258824f, 0.435294f,
-		0.258824f, 0.258824f, 0.435294f
-	};
-
+	
 
 	//change 3
 
-	glGenVertexArrays(1, &vao_Triangle);
-	glBindVertexArray(vao_Triangle);
+	glGenVertexArrays(1, &vao_Pyramid);
+	glBindVertexArray(vao_Pyramid);
 
 
 
-	glGenBuffers(1, &vbo_Triangle_Position);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_Triangle_Position); // color texture are kept here 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(triangleVertices), triangleVertices, GL_STATIC_DRAW);
+	glGenBuffers(1, &vbo_Pyramid_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Pyramid_Position); // color texture are kept here 
+	glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(AK_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	glEnableVertexAttribArray(AK_ATTRIBUTE_POSITION);
 
 	// change no.6 .... color sathi same 
-	glGenBuffers(1, &vbo_Triangle_Color);					// Buffer to store vertex colors
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_Triangle_Color);		// Find that named object in memory
-	glBufferData(GL_ARRAY_BUFFER, sizeof(triangleColors), triangleColors, GL_STATIC_DRAW);	// Takes data from CPU to GPU
+	glGenBuffers(1, &vbo_Pyramid_Color);					// Buffer to store vertex colors
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Pyramid_Color);		// Find that named object in memory
+	glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidColors),PyramidColors, GL_STATIC_DRAW);	// Takes data from CPU to GPU
 
 	glVertexAttribPointer(AK_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	glEnableVertexAttribArray(AK_ATTRIBUTE_COLOR);
@@ -710,9 +762,9 @@ void initialize(void)
 
 
 	// Square 
-	glGenBuffers(1, &vbo_Square_Position);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_Square_Position);		// Find that named object in memory
-	glBufferData(GL_ARRAY_BUFFER, sizeof(squareVertices), squareVertices, GL_STATIC_DRAW);	// Takes data from CPU to GPU
+	glGenBuffers(1, &vbo_Cube_Position);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Cube_Position);		// Find that named object in memory
+	glBufferData(GL_ARRAY_BUFFER, sizeof(CubeVertices), CubeVertices, GL_STATIC_DRAW);	// Takes data from CPU to GPU
 
 	glVertexAttribPointer(AK_ATTRIBUTE_POSITION, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	glEnableVertexAttribArray(AK_ATTRIBUTE_POSITION);
@@ -721,9 +773,9 @@ void initialize(void)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	//  COLORS
-	glGenBuffers(1, &vbo_Square_Color);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo_Square_Color);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(squareColors), squareColors, GL_STATIC_DRAW);	// Takes data from CPU to GPU
+	glGenBuffers(1, &vbo_Cube_Color);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo_Cube_Color);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(CubeColors), CubeColors, GL_STATIC_DRAW);	// Takes data from CPU to GPU
 
 	glVertexAttribPointer(AK_ATTRIBUTE_COLOR, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	glEnableVertexAttribArray(AK_ATTRIBUTE_COLOR);
@@ -760,7 +812,7 @@ void initialize(void)
 
 
 	// background color
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // blue 
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // black 
 
 	resize(WIN_WIDTH, WIN_HEIGHT);
 }
@@ -785,12 +837,13 @@ void display(void)
 
 
 
-	// OpenGL Triangle
+	// OpenGL Pyramid
 
 	// set modelview & model viewprojection matrices to identity
 
 	mat4 modelViewMatrix = mat4::identity();
 	mat4 modelViewProjectionMatrix = mat4::identity();
+	mat4 ScaleMatrix = mat4::identity();
 
 	//rotation
 	mat4 rotationMatrix = mat4::identity(); // ......change 2
@@ -800,7 +853,7 @@ void display(void)
 
 	//rotationMatrix.........change 3
 
-	rotationMatrix = vmath::rotate(angletriangle, 0.0f, 1.0f, 0.0f);
+	rotationMatrix = vmath::rotate(AnglePyramid, 0.0f, 1.0f, 0.0f);
 
 	//modelViewMatrix with the rotationMatrix .......change 3
 
@@ -814,11 +867,11 @@ void display(void)
 
 	//**bind vao** // gl being
 
-	glBindVertexArray(vao_Triangle);
+	glBindVertexArray(vao_Pyramid);
 
 	// draw either by glDrawTriangle() or glDrawArrays or glDrawElements()
 
-	glDrawArrays(GL_TRIANGLES, 0, 3); // 3 each with its xyz vertex triangle vertex array
+	glDrawArrays(GL_TRIANGLES, 0, 12); // 3 each with its xyz vertex triangle vertex array
 
 	// unbind vao
 
@@ -826,20 +879,25 @@ void display(void)
 
 
 
-	//Square
+	// Cube
 
 	// modelview and modelviewprojection matrices to identity 
 
 	modelViewMatrix = mat4::identity();
 	modelViewProjectionMatrix = mat4::identity();
 	rotationMatrix = mat4::identity(); //.......change 4
+	
+
+	ScaleMatrix = vmath::scale(0.75f, 0.75f, 0.75f);
+
+	modelViewMatrix = TranslateMatrix * ScaleMatrix * rotationMatrix;
 
 
 	// Translate the modelViewMatrix along the z axis
 	modelViewMatrix = translate(1.5f, 0.0f, -6.0f);
 
 	// Rotate the rotationMatrix:
-	rotationMatrix = rotate(anglesquare, 1.0f, 0.0f, 0.0f);
+	rotationMatrix = rotate(AngleCube, 1.0f, 0.0f, 0.0f);
 
 	modelViewMatrix = modelViewMatrix * rotationMatrix;  // change ... 5
 
@@ -851,10 +909,17 @@ void display(void)
 	glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, modelViewProjectionMatrix);
 
 	// BIND vao
-	glBindVertexArray(vao_Square);
+	glBindVertexArray(vao_Cube);
 
 	// Draw either by glDrawTraingles() or glDrawArrays() or glDrawElements()
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);	// 3(x, y, z) vertices in the squareVertices array
+	
+	// 3(x, y, z) vertices in the squareVertices array
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);// 3 (each with its x, y, z) vertices in SquareVertices array
+	glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 8, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 12, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 16, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 20, 4);
 
 	// Unbind vao
 	glBindVertexArray(0);
@@ -878,13 +943,13 @@ void display(void)
 
 void Update(void)
 {
-	angletriangle = angletriangle + 0.1f;
-	if (angletriangle >= 360.0f)
-		angletriangle = 0.0f;
+	AnglePyramid = AnglePyramid + 0.1f;
+	if (AnglePyramid >= 360.0f)
+		AnglePyramid = 0.0f;
 
-	anglesquare = anglesquare + 0.11f;
-	if (anglesquare >= 360.0f)
-		anglesquare = 0.0f;
+	AngleCube = AngleCube + 0.1f;
+	if (AngleCube >= 360.0f)
+		AngleCube = 0.0f;
 }
 
 
@@ -932,48 +997,48 @@ void uninitialize(void)
 
 	// destroy vao
 
-	if (vao_Triangle)
+	if (vao_Pyramid)
 	{
-		glDeleteVertexArrays(1, &vao_Triangle);
-		vao_Triangle = 0;
+		glDeleteVertexArrays(1, &vao_Pyramid);
+		vao_Pyramid = 0;
 
 	}
 
 	// destroy vbo
 
-	if (vbo_Triangle_Position)
+	if (vbo_Pyramid_Position)
 	{
-		glDeleteBuffers(1, &vbo_Triangle_Position);
-		vbo_Triangle_Position = 0;
+		glDeleteBuffers(1, &vbo_Pyramid_Position);
+		vbo_Pyramid_Position = 0;
 	}
 
-	if (vbo_Triangle_Color)
+	if (vbo_Pyramid_Color)
 	{
-		glDeleteBuffers(1, &vbo_Triangle_Color);
-		vbo_Triangle_Color = 0;
+		glDeleteBuffers(1, &vbo_Pyramid_Color);
+		vbo_Pyramid_Color = 0;
 	}
 
 
 	// Destroy square vao 
-	if (vao_Square)
+	if (vao_Cube)
 	{
-		glDeleteVertexArrays(1, &vao_Square);
-		vao_Square = 0;
+		glDeleteVertexArrays(1, &vao_Cube);
+		vao_Cube = 0;
 	}
 
 	// Destroy vbo for Square Position:
-	if (vbo_Square_Position)
+	if (vbo_Cube_Position)
 	{
-		glDeleteBuffers(1, &vbo_Square_Position);
-		vbo_Square_Position = 0;
+		glDeleteBuffers(1, &vbo_Cube_Position);
+		vbo_Cube_Position = 0;
 	}
 
 
 	// Destroy vbo for Square Color:
-	if (vbo_Square_Color)
+	if (vbo_Cube_Color)
 	{
-		glDeleteBuffers(1, &vbo_Square_Color);
-		vbo_Square_Color = 0;
+		glDeleteBuffers(1, &vbo_Cube_Color);
+		vbo_Cube_Color = 0;
 	}
 
 
